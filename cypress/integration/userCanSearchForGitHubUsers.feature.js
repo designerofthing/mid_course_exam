@@ -4,7 +4,7 @@ describe("User can search for a Github user", () => {
       cy.server();
       cy.route({
         method: "GET",
-        url: "http://localhost:3001/api",
+        url: "http://localhost:3000/search/users",
         response: "fixture:search_response.json",
       });
       cy.visit("/");
