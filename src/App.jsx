@@ -1,20 +1,20 @@
-import React from 'react'
-import Header from './components/Title'
-import GHSearch from './components/GHSearch'
-import { Container } from 'semantic-ui-react'
-import axios from 'axios';
+import React from "react";
+import Header from "./components/Title";
+import GHSearch from "./components/GHSearch";
+import { Container } from "semantic-ui-react";
+import axios from "axios";
 
 const App = () => {
   state = {
     searchResult: [],
-    message: '',
+    message: "",
   };
-  
+
   searchReq = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.get('/search/users', {
-        params: {q: e.target.children.search.value },
+      const response = await axios.get("/search/users", {
+        params: { q: e.target.children.search.value },
       });
       this.SpeechSynthesisUtterance({ searchResult: response.data.result });
     } catch (error) {
@@ -29,11 +29,11 @@ const App = () => {
         <Header />
       </section>
       <section name="main">
-        <GHSearch/>
+        <GHSearch />
       </section>
-      <p id='message'>{this.state.message}</p>
+      <p id="message">{this.state.message}</p>
     </Container>
-  )
-}
+  );
+};
 
-export default App
+export default App;
