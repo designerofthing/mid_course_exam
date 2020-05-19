@@ -1,11 +1,20 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Button, Input } from 'semantic-ui-react'
+import axios from 'axios';
 
-const GHSearch = () => {
+class GHSearch extends Component {
+  state = {
+    results: []
+  };
+  
+  searchResponse = () => {
+    axios.get(`https://api.github.com/search/users/q${}`)
+  }
+
   return (
     <>
       <Input type="text" name="search" placeholder="Input GH username"/>
-      <Button name="search">Search</Button>
+      <Button onClick={searchResponse}  name="search">Search</Button>
     </>
   )
 }

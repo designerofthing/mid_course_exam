@@ -8,7 +8,7 @@ describe('User can search for a Github user login name', () => {
         response: 'fixture:search_response.json'
       });
       cy.visit('/');
-      cy.get(input).type('Barack');
+      cy.get('input').type('Barack');
       cy.get('button').contains('Search').click();
     });
     
