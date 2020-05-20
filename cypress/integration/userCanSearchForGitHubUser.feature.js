@@ -4,7 +4,7 @@ describe('User can search for a Github user login name', () => {
       cy.server();
       cy.route({
         method: 'GET',
-        url: 'https://api.github.com/search/users',
+        url: 'https://api.github.com/search/users?q=Barack',
         response: 'fixture:search_response.json'
       });
       cy.visit('/');
@@ -13,7 +13,7 @@ describe('User can search for a Github user login name', () => {
     });
     
     it('Can see first result', () => {
-      cy.get('result').contains('PresidentObama');
+      cy.get('#result').contains('PresidentObama');
     });
   });
 });

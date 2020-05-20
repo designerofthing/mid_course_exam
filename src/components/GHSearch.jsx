@@ -4,19 +4,45 @@ import axios from 'axios';
 
 class GHSearch extends Component {
   state = {
-    results: []
+    search: '',
+    items: []
   };
   
-  searchResponse = () => {
-    axios.get(`https://api.github.com/search/users/q${}`)
+  async searchResponse() {
+    const results = await axios.get(`https://api.github.com/search/users?q=${this.state.search}`)
+    debugger
+    this.setState({ items: results.data.items })
   }
+
+  setValue = (event) => {
+    this.setState({ search: event.target.value })
+  }
+  render() {
+
+    let itemDisplay = this.state.items.map(item => {
+      return (
+        <li>{item.login}</li>
+      )
+    })
 
   return (
     <>
-      <Input type="text" name="search" placeholder="Input GH username"/>
-      <Button onClick={searchResponse}  name="search">Search</Button>
+      <Input 
+        onChange={e => this.setValue(e)}
+        type="text" 
+        name="search" 
+        placeholder="Input GH username"
+      />
+      <Button 
+        onClick={this.searchResponse.bind(this)}  
+        name="search">
+        Search
+      </Button>
+      <ul id='result'>
+        {itemDisplay}
+        </ul>
     </>
-  )
+  )}
 }
 
 export default GHSearch
