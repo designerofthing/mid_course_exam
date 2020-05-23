@@ -21,7 +21,10 @@ class GHSearch extends Component {
 
     let itemDisplay = this.state.items.map(item => {
       return (
+        <>
         <li>{item.login}</li>
+      <a href={item.html_url}>{item.html_url}</a>
+        </>
       )
     })
 
@@ -38,9 +41,9 @@ class GHSearch extends Component {
         name="search">
         Search
       </Button>
-      <ul id='result'>
+      <ol id='result'>
         {itemDisplay}
-        </ul>
+        </ol>
     </>
   )}
 }
