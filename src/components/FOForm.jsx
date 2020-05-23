@@ -19,7 +19,7 @@ class FOForm extends Component {
       this.setState({ error: errorMessage });
     }
   };
-  handleSubmit = (event) => {
+  handleChange = (event) => {
     this.setState({ name: event.target.value })
     debugger
   }
@@ -29,11 +29,11 @@ class FOForm extends Component {
 
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <input id='name-input' type='text' placeholder='name'/>
+        <form >
+          <input onChange={this.handleChange} id='name-input' type='text' placeholder='name'/>
           <button onClick={this.sendRequest} id='button'>submit</button>
         </form>
-        <h1>{this.state.greeting}</h1>
+        <h1>{this.greeting}</h1>
       </div>
     )
   }
