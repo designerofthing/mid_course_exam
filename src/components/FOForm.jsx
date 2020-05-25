@@ -3,7 +3,7 @@ import axios from 'axios';
 
 class FOForm extends Component {
   state = {
-    greeting: '',
+    greeting: [],
     name: '',
     message: ''
   }
@@ -11,7 +11,7 @@ class FOForm extends Component {
   sendRequest = async () => {
     let result 
     try {
-      result= await axios.get(`https://www.foaas.com/blackadder/${this.state.name}/Steve`)
+      result= await axios.get(`https://www.foaas.com//fascinating/:from?from=${this.state.name}`)
       this.setState({ greeting: result })
 
     } catch (error) {
@@ -34,6 +34,7 @@ class FOForm extends Component {
           <button onClick={this.sendRequest} id='button'>submit</button>
         </form>
         <h1>{this.greeting}</h1>
+        <p>{this.message}</p>
       </div>
     )
   }
