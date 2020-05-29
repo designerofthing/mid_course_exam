@@ -1,43 +1,53 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { Component } from "react";
+import axios from "axios";
 
 class FOForm extends Component {
   state = {
-    greeting: [],
-    name: '',
-    message: ''
-  }
+    greeting: "",
+    name: "",
+    message: "",
+  };
 
   sendRequest = async () => {
-    let result 
+    debugger
     try {
-      result= await axios.get(`https://www.foaas.com//fascinating/:from?from=${this.state.name}`)
-      this.setState({ greeting: result })
-
+     const result = await axios.get(
+        `https://www.foaas.com/fascinating/${this.state.name}`, {
+          headers: {
+            Accept: "application/json",
+          'Content-Type': 'application/json',}
+        }
+      ); 
+      this.setState({ greeting: result.data.message });
+      debugger
     } catch (error) {
-      let errorMessage = error.message
+      let errorMessage = error.message;
       this.setState({ error: errorMessage });
     }
   };
   handleChange = (event) => {
-    this.setState({ name: event.target.value })
-    debugger
-  }
-
+    this.setState({ name: event.target.value });
+  };
 
   render() {
-
     return (
       <div>
-        <form >
-          <input onChange={this.handleChange} id='name-input' type='text' placeholder='name'/>
-          <button onClick={this.sendRequest} id='button'>submit</button>
+        <form>
+          <input
+            onChange={this.handleChange}
+            id="name-input"
+            type="text"
+            placeholder="name"
+          />
+          <button onClick={() => this.sendRequest()} id="button">
+            submit
+          </button>
         </form>
-        <h1>{this.greeting}</h1>
+        <h1 id='greeting' >{this.greeting}</h1>
         <p>{this.message}</p>
       </div>
-    )
+    );
   }
 }
 
-export default FOForm
+export default FOForm;

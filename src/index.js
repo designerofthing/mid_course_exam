@@ -3,12 +3,11 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import 'semantic-ui-css/semantic.min.css'
 import * as serviceWorker from './serviceWorker';
+import axios from 'axios'
 
-
+axios.defaults.baseURL = 'https://www.foaas.com'
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <App />,
   document.getElementById('root')
 );
 
